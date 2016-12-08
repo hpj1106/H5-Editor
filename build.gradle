@@ -32,4 +32,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	runtime('mysql:mysql-connector-java')
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.6'
 }
