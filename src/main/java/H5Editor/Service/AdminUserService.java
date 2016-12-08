@@ -16,6 +16,7 @@ import java.util.List;
  * Created by MrCJ on 2016/12/8.
  */
 public class AdminUserService implements UserDetailsService {
+
     private final AdminRepository adminRepository;
 
     public AdminUserService(AdminRepository adminRepository) {
