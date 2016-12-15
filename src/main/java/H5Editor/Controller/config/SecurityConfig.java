@@ -20,15 +20,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**/user/*").access("hasRole('USER')")
+                .antMatchers("/user/*").access("hasRole('USER')")
                 .antMatchers("/admin/*").access("hasRole('ADMIN')")
                 .antMatchers("/systemAdmin/*").access("hasRole('SYSTEM')")
                 .and()
                 .formLogin()
                     .loginPage("/login")
+                    .successHandler(loginSuccessHandler)
                     .failureUrl("/login?error=true");
     }
 

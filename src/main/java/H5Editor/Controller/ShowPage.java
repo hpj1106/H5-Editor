@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ShowPage {
 
-    @GetMapping("/show/index")
-    public String showIndex(Model model) {
-        String desValue = "This is an Index Page!";
-        model.addAttribute("description", desValue);
-        return "index";
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/login";
     }
 
     @GetMapping("/admin/show")
