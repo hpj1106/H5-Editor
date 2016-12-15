@@ -1,7 +1,7 @@
 package H5Editor;
 
-import H5Editor.Model.AdminRepository;
-import H5Editor.Model.Admin;
+import H5Editor.Model.UserRepository;
+import H5Editor.Model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -23,10 +23,10 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner test(AdminRepository repository) {
+    public CommandLineRunner test(UserRepository repository) {
         return (args) -> {
-            Admin admin = repository.findByUsername("cjw");
-            log.info(admin.toString());
+            User user = repository.findByUsername("aaa");
+            log.info(user.toString());
         };
     }
 

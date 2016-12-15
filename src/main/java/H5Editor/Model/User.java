@@ -1,5 +1,6 @@
 package H5Editor.Model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,16 +14,17 @@ import javax.persistence.Id;
  */
 
 
-@Setter
-@Getter
+@Data
 @Entity
-public class Admin {
+public class User {
 
     @Id
+    private int userId;
     private String username;
     private String password;
     private String email;
     private String tel;
+    private int type;
 
     @Override
     public String toString() {

@@ -1,10 +1,9 @@
 package H5Editor.Service;
 
-import H5Editor.Model.Admin;
-import H5Editor.Model.AdminRepository;
+import H5Editor.Model.User;
+import H5Editor.Model.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,28 +14,28 @@ import java.util.List;
 /**
  * Created by MrCJ on 2016/12/8.
  */
-public class AdminUserService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
-    private final AdminRepository adminRepository;
+    private final UserRepository userRepository;
 
-    public AdminUserService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
+    public UserService(UserRepository adminRepository) {
+        this.userRepository = adminRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Admin admin = adminRepository.findByUsername(username);
-        if (admin != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getType() == 0) {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            return new User(
-                    admin.getUsername(),
-                    admin.getPassword(),
+            return new org.springframework.security.core.userdetails.User(
+                    user.getUsername(),
+                    user.getPassword(),
                     authorities
             );
         }
         throw new UsernameNotFoundException(
-                "Admin '" + username + "' not found"
+                "User '" + username + "' not found"
         );
     }
 }
