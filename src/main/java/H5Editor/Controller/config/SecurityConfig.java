@@ -23,7 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").access("hasRole('ADMIN')")
+                .antMatchers("/**/user/*").access("hasRole('USER')")
+                .antMatchers("/admin/*").access("hasRole('ADMIN')")
+                .antMatchers("/systemAdmin/*").access("hasRole('SYSTEM')")
                 .and()
                 .formLogin()
                     .loginPage("/login")
@@ -33,5 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(new UserService(userRepository));
+        auth.inMemoryAuthentication()
+                .withUser("H5Editor").password("123456").roles("SYSTEM");
     }
 }
