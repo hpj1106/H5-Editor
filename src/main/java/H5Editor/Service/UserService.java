@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by MrCJ on 2016/12/8.
+ * 权限逻辑
  */
 public class UserService implements UserDetailsService {
 
@@ -27,7 +28,8 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username);
         if (user != null) {
             List<GrantedAuthority> authorities = new ArrayList<>();
-            if (user.getType() == 0) {
+            // 管理员
+            if (user.getType() == 0 && user.isAvailable()) {
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 return new org.springframework.security.core.userdetails.User(
                         user.getUsername(),
@@ -35,7 +37,8 @@ public class UserService implements UserDetailsService {
                         authorities
                 );
             }
-            if (user.getType() == 1) {
+            // 用户
+            if (user.getType() == 1 && user.isAvailable()) {
                 authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
                 return new org.springframework.security.core.userdetails.User(
                         user.getUsername(),

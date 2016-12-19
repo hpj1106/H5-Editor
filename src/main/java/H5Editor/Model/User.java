@@ -25,6 +25,7 @@ public class User {
     private String email;
     private String tel;
     private int type;
+    private boolean available;
 
     @Override
     public String toString() {
