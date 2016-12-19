@@ -8,5 +8,11 @@ package H5Editor.Service.Json;
 public class Response {
     private String success;
     private String info;
-    public Object data;
+    private Object data;
+
+    public Response(String success, String info, Object data) {
+        this.success = success;
+        this.info = info;
+        this.data = data;
+    }
 }

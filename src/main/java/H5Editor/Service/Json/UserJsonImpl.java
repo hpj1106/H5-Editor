@@ -23,11 +23,8 @@ public class UserJsonImpl implements UserJson {
     }
 
     public Object getUserList() {
-        Response resp = new Response();
-        resp.setSuccess("true");
-        resp.setInfo("success");
         List<User> userList = userRepository.getAllUser();
-        resp.setData(userList);
+        Response resp = new Response("true", "success", userList);
         return resp;
     }
 
