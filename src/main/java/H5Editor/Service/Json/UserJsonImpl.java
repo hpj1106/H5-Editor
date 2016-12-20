@@ -28,18 +28,19 @@ public class UserJsonImpl implements UserJson {
         return resp;
     }
 
-    public Object addUser(){
-        int i=userRepository.addUser();  //?????????????????
-        Response resp;
-        if(i==1)
-            resp = new Response("true", "success", null);
-        else
-            resp = new Response("false", "insertion failed", null);
+    public Object addUser(UserRepository repository,String id,String name,String email, String tel,
+                          String pass,int type,int available){
+
+
+        //查用户名
+        repository.save(new User(name,pass,email,tel,type,available )); //插入
+
+        Response  resp = new Response("true", "success", null);
         return resp;
     }
 
-    public Object deleteUser(){
-        int i=userRepository.deleteUser();
+    public Object deleteUser(String id){
+        int i=userRepository.deleteUser(id);
         Response resp;
         if(i==1)
             resp = new Response("true", "success", null);
@@ -47,8 +48,9 @@ public class UserJsonImpl implements UserJson {
             resp = new Response("false", "insertion failed", null);
         return resp;
     }
-    public Object modifyUser(){
-        int i=userRepository.addUser();
+    public Object modifyUser(String id,String name,String email, String tel,
+                             String pass,int type,int available){
+        int i=userRepository.modifyUser(id,name,email,tel,pass, type,available);
         Response resp;
         if(i==1)
             resp = new Response("true", "success", null);
@@ -56,8 +58,8 @@ public class UserJsonImpl implements UserJson {
             resp = new Response("false", "insertion failed", null);
         return resp;
     }
-    public Object queryUser(){
-        User user = userRepository.queryUser();
+    public Object queryUser(String id){
+        User user = userRepository.queryUser(id);
         Response resp = new Response("true", "success", user);
         return resp;
     }
