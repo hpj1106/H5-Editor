@@ -8,9 +8,6 @@ import java.util.List;
 /**
  * Created by MrCJ on 2016/12/19.
  */
-public interface FileRepository extends CrudRepository<File, Long>, FileRepo {
-
-    @Query("select f from file f")
-    List<File> getAllFileForAdmin();
+public interface FileRepository extends CrudRepository<File, Long> {
 
 }

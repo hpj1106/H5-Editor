@@ -1,4 +1,4 @@
-package H5Editor.Model;
+package H5Editor.Model.User;
 
 import lombok.Data;
 import lombok.Getter;

@@ -2,12 +2,14 @@ package H5Editor.Model.File;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
  * Created by MrCJ on 2016/12/19.
  */
 @Data
+@Entity
 public class File {
     @Id
     private long fileId;
