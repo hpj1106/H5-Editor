@@ -1,4 +1,4 @@
-package H5Editor.Model;
+package H5Editor.Model.User;
 
 import lombok.Data;
 import lombok.Getter;
@@ -25,6 +25,7 @@ public class User {
     private String email;
     private String tel;
     private int type;
+    private boolean available;
 
     @Override
     public String toString() {

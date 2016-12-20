@@ -1,8 +1,7 @@
 package H5Editor.Service.Json;
 
-import H5Editor.Model.User;
-import H5Editor.Model.UserRepository;
-import H5Editor.Service.UserJson;
+import H5Editor.Model.User.User;
+import H5Editor.Model.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
