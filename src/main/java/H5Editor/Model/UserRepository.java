@@ -25,6 +25,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query("select u from User u where u.type = 1")     //ignore this error report
     int modifyUser();
 
-    @Query("select u from User u where u.type = 1")     //ignore this error report
+    @Query("select u from User u where u.type = 1 and u.user_id='12'")     //ignore this error report
     User queryUser();
 }
