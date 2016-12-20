@@ -1,12 +1,8 @@
 package H5Editor.Model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -25,6 +21,16 @@ public class User {
     private String email;
     private String tel;
     private int type;
+    private int available;
+
+    public User(String name,String pass, String email, String tele, int type,int available) {
+        this.username=name;
+        this.password=pass;
+        this.email=email;
+        this.tel=tele;
+        this.type=type;
+        this.available=available;
+    }
 
     @Override
     public String toString() {

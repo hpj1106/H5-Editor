@@ -28,6 +28,40 @@ public class UserJsonImpl implements UserJson {
         return resp;
     }
 
+    public Object addUser(){
+        int i=userRepository.addUser();
+        Response resp;
+        if(i==1)
+            resp = new Response("true", "success", null);
+        else
+            resp = new Response("false", "insertion failed", null);
+        return resp;
+    }
+
+    public Object deleteUser(){
+        int i=userRepository.deleteUser();
+        Response resp;
+        if(i==1)
+            resp = new Response("true", "success", null);
+        else
+            resp = new Response("false", "insertion failed", null);
+        return resp;
+    }
+    public Object modifyUser(){
+        int i=userRepository.addUser();
+        Response resp;
+        if(i==1)
+            resp = new Response("true", "success", null);
+        else
+            resp = new Response("false", "insertion failed", null);
+        return resp;
+    }
+    public Object queryUser(){
+        User user = userRepository.queryUser();
+        Response resp = new Response("true", "success", user);
+        return resp;
+    }
+
 }
 
 

@@ -5,4 +5,9 @@ package H5Editor.Service;
  */
 public interface UserJson {
     Object getUserList();
+    Object addUser();
+    Object deleteUser();
+    Object modifyUser();
+    Object queryUser();
+
 }

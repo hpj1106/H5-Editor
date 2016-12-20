@@ -24,5 +24,40 @@ public class Admin {
     public Object getUserList() {
         return userJson.getUserList();
     }
-    //
+
+
+    @RequestMapping(value = "/admin/addUser",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public Object addUser() {
+        return userJson.getUserList();  //
+    }
+
+    @RequestMapping(value = "/admin/deleteUser",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public Object deleteUser() {
+        return userJson.getUserList();  //
+    }
+
+    @RequestMapping(value = "/admin/modifyUser",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public Object modifyUser() {
+        return userJson.getUserList();  //
+    }
+
+
+    @RequestMapping(value = "/admin/queryUser",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @ResponseBody
+    public Object queryUser() {
+        return userJson.getUserList();  //
+    }
+
+
 }
