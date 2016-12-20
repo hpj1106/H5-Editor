@@ -44,7 +44,6 @@ public class Application {
             f1.forEach(n -> System.out.println(n));
             //log.info(file1.get(0).toString());
             * */
-
         };
     }
 

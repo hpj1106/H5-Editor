@@ -9,5 +9,5 @@ import java.util.List;
  * Created by MrCJ on 2016/12/19.
  */
 public interface FileRepository extends CrudRepository<File, Long> {
-
+    List<File> findByuserId(int userId);
 }
