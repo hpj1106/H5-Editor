@@ -10,7 +10,7 @@ import java.nio.file.Path;
 public interface FileStorage {
     void store(int userId, MultipartFile file);
 
-    Path load(String filename);
+    //Path load(String filename);
 
-    Resource loadAsResource(String filename);
+    //Resource loadAsResource(String filename);
 }

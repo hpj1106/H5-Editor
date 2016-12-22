@@ -50,14 +50,15 @@ public class ShowPage {
         return "index";
     }
 
+    /*
     @GetMapping("/service/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
-
         Resource file = fileStorageService.loadAsResource(filename);
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.ACCEPT, "attachment; filename=\""+file.getFilename()+"\"")
                 .body(file);
     }
+    */
 }

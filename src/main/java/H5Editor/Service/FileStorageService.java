@@ -1,12 +1,11 @@
 package H5Editor.Service;
 
-import H5Editor.Model.File.File;
 import H5Editor.Model.File.FileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,6 +48,7 @@ public class FileStorageService implements FileStorage {
         }
     }
 
+    /*
     @Override
     public Path load(String filename) {
         return rootLocation.resolve(filename);
@@ -56,9 +56,12 @@ public class FileStorageService implements FileStorage {
 
     @Override
     public Resource loadAsResource(String filename) {
+        System.out.println("filename = " + filename);
         try {
             Path file = load(filename);
-            Resource resource = new UrlResource(file.toUri());
+            System.out.println("path = " + file.toString());
+            //Resource resource = new UrlResource(file.toUri());
+            Resource resource = new FileSystemResource(file.toFile());
             if(resource.exists() || resource.isReadable()) {
                 return resource;
             }
@@ -70,4 +73,5 @@ public class FileStorageService implements FileStorage {
             throw new RuntimeException("Could not read file: " + filename, e);
         }
     }
+    */
 }
