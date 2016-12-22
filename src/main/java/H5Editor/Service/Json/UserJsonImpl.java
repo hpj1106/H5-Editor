@@ -3,7 +3,7 @@ package H5Editor.Service.Json;
 import H5Editor.Model.User.User;
 import H5Editor.Model.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Created by MrCJ on 2016/12/19.
  */
 
-@Component
+@Service
 public class UserJsonImpl implements UserJson {
 
     private UserRepository userRepository;
@@ -23,8 +23,7 @@ public class UserJsonImpl implements UserJson {
 
     public Object getUserList() {
         List<User> userList = userRepository.getAllUser();
-        Response resp = new Response("true", "success", userList);
-        return resp;
+        return new Response("true", "success", userList);
     }
 
 }

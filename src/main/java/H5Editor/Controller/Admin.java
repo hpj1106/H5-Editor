@@ -1,6 +1,7 @@
 package H5Editor.Controller;
 
 import H5Editor.Model.File.FileRepository;
+import H5Editor.Service.Json.FileJson;
 import H5Editor.Service.Json.UserJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class Admin {
     private UserJson userJson;
 
     @Autowired
-    private FileRepository fileRepository;
+    private FileJson fileJson;
 
     @RequestMapping(value = "/admin/getUserList",
                     method = RequestMethod.GET,
@@ -35,7 +36,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getFileList() {
-        return fileRepository.findAll();
+        return fileJson.getFileListForAdmin();
     }
 
 }
