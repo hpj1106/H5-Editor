@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 @Service
-public class UserJsonImpl implements UserJson {
+public class UserJsonService implements UserJson {
 
     private UserRepository userRepository;
 
     @Autowired
-    public UserJsonImpl(UserRepository userRepository) {
+    public UserJsonService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

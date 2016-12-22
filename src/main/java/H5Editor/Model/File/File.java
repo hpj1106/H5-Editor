@@ -15,9 +15,19 @@ public class File {
     private long fileId;
     private int userId;
     private String filename;
+    private String location;
     private int type;
     private boolean available;
     private boolean isPublic;
+
+    public File(int userId, String filename, String location, int type, boolean available, boolean isPublic) {
+        this.userId = userId;
+        this.filename = filename;
+        this.location = location;
+        this.type = type;
+        this.available = available;
+        this.isPublic = isPublic;
+    }
 
     public String toString() {
         return "file = " + this.filename;

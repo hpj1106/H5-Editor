@@ -1,6 +1,5 @@
 package H5Editor.Service.Json;
 
-import H5Editor.Model.File.File;
 import H5Editor.Model.File.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +12,12 @@ import java.util.List;
  */
 
 @Service
-public class FileJsonImpl implements FileJson {
+public class FileJsonService implements FileJson {
 
     private FileRepository fileRepository;
 
     @Autowired
-    public FileJsonImpl(FileRepository fileRepository) {
+    public FileJsonService(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
 
