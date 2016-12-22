@@ -1,13 +1,15 @@
 package H5Editor.Controller;
 
-import H5Editor.Model.File.FileRepository;
+import H5Editor.Service.Json.FileJson;
+import H5Editor.Service.Json.Response;
 import H5Editor.Service.Json.UserJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * Created by MrCJ on 2016/12/19.
@@ -20,7 +22,7 @@ public class Admin {
     private UserJson userJson;
 
     @Autowired
-    private FileRepository fileRepository;
+    private FileJson fileJson;
 
     @RequestMapping(value = "/admin/getUserList",
                     method = RequestMethod.GET,
@@ -35,7 +37,11 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getFileList() {
-        return fileRepository.findAll();
+        return fileJson.getFileListForAdmin();
     }
 
+    @RequestMapping(value = "/admin/uploadFile")
+    public ResponseEntity<Response> uploadFile(@RequestPart("file") MultipartFile file) {
+        return null;
+    }
 }
