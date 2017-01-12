@@ -20,6 +20,10 @@ public class File {
     private boolean available;
     private boolean isPublic;
 
+    public File() {
+
+    }
+
     public File(int userId, String filename, String location, int type, boolean available, boolean isPublic) {
         this.userId = userId;
         this.filename = filename;

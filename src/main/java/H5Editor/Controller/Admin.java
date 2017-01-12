@@ -1,13 +1,14 @@
 package H5Editor.Controller;
 
+import H5Editor.Service.FileStorage;
 import H5Editor.Service.Json.FileJson;
 import H5Editor.Service.Json.Response;
 import H5Editor.Service.Json.UserJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 
@@ -23,6 +24,9 @@ public class Admin {
 
     @Autowired
     private FileJson fileJson;
+
+    @Autowired
+    private FileStorage fileStorage;
 
     @RequestMapping(value = "/admin/getUserList",
                     method = RequestMethod.GET,
@@ -40,8 +44,18 @@ public class Admin {
         return fileJson.getFileListForAdmin();
     }
 
-    @RequestMapping(value = "/admin/uploadFile")
-    public ResponseEntity<Response> uploadFile(@RequestPart("file") MultipartFile file) {
-        return null;
+    @GetMapping(value = "/admin/uploadFile")
+    public String uploadFile() {
+        return "uploadFile";
+    }
+
+    @PostMapping(value = "/admin/uploadFile")
+    public String handleFileupload(@RequestParam("file") MultipartFile file,
+                                   RedirectAttributes redirectAttributes) {
+        System.out.println(file.getOriginalFilename());
+        fileStorage.store(file);
+        redirectAttributes.addFlashAttribute("message",
+                "You successfully uploaded " + file.getOriginalFilename());
+        return "redirect:/admin/show";
     }
 }
