@@ -2,6 +2,7 @@ package H5Editor.Service.Json;
 
 /**
  * Created by MrCJ on 2016/12/22.
+ * 素材相关的JSON接口
  */
 public interface FileJson {
     Object getFileListForAdmin();

@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by MrCJ on 2016/12/20.
+ * 用户控制器
  */
 @Controller
 public class User {
@@ -24,6 +25,9 @@ public class User {
     @Autowired
     private FileJson fileJson;
 
+    /**
+     * 获取普通用户上传的素材列表
+     * */
     @RequestMapping(value = "/user/getFileList/{userId}",
                     method = RequestMethod.GET,
                     produces = "application/json")

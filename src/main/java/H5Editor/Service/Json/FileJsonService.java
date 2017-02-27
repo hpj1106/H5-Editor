@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by MrCJ on 2016/12/22.
+ * 与素材相关的Service
  */
 
 @Service
