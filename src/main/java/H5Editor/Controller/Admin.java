@@ -64,10 +64,10 @@ public class Admin {
      * */
     @RequestMapping(value = "/admin/deleteUser",
                     method = RequestMethod.DELETE,
-                    consumes = "application/json",
                     produces = "application/json")
-    public Object removeUser(@RequestBody User user) {
-        return userJson.removeUserById(user.getUserId());
+    @ResponseBody
+    public Object removeUser(@RequestParam int userId) {
+        return userJson.removeUserById(userId);
     }
 
     /**
@@ -80,6 +80,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getUser(@RequestParam int userId) {
+        // RequestParam 简单参数的绑定，可以直接体现在URL上
         return userJson.getUserById(userId);
     }
 
@@ -92,6 +93,7 @@ public class Admin {
                     method = RequestMethod.PUT,
                     consumes = "application/json",
                     produces = "application/json")
+    @ResponseBody
     public Object modifyUser(@RequestBody User user) {
         return userJson.modifyUserById(user);
     }
