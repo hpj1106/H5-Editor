@@ -80,6 +80,7 @@ public class UserJsonService implements UserJson {
                     user.isAvailable());
             return RES_SUCCESS_NO_DATA;
         } catch (Exception e) {
+            System.out.println(e);
             RES_FAIL.setInfo("Modify Error");
             return RES_FAIL;
         }

@@ -55,6 +55,8 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object addUser(@RequestBody User user) {
+        LOGGER.info("userId", user.getUsername());
+        LOGGER.info("userTel", user.getPassword());
         return userJson.addUser(user);
     }
 
