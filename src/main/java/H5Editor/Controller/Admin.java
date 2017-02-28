@@ -4,6 +4,8 @@ import H5Editor.Model.User.User;
 import H5Editor.Service.FileStorage;
 import H5Editor.Service.Json.FileJson;
 import H5Editor.Service.Json.UserJson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,8 @@ public class Admin {
     @Autowired
     private FileStorage fileStorage;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Admin.class);
+
     /*用户接口*/
     /**
      * 获取所有普通用户
@@ -49,6 +53,7 @@ public class Admin {
                     method = RequestMethod.POST,
                     consumes = "application/json",
                     produces = "application/json")
+    @ResponseBody
     public Object addUser(@RequestBody User user) {
         return userJson.addUser(user);
     }
@@ -72,10 +77,10 @@ public class Admin {
      * */
     @RequestMapping(value = "/admin/getUser",
                     method = RequestMethod.GET,
-                    consumes = "text/plain",
                     produces = "application/json")
-    public Object getUser(@RequestParam String userId) {
-        return userJson.getUserById(Integer.getInteger(userId));
+    @ResponseBody
+    public Object getUser(@RequestParam int userId) {
+        return userJson.getUserById(userId);
     }
 
     /**

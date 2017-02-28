@@ -24,13 +24,17 @@ public class FileJsonService implements FileJson {
 
     @Override
     public Object getFileListForAdmin() {
-        return new Response("true", "success", fileRepository.findAll());
+        return null;
+        //return new Response("true", "success", fileRepository.findAll());
+        //return Response.getResponse("true", "success", fileRepository.findAll());
     }
 
     @Override
     public Object getFileListForUser(int userId) {
         List<Integer> userIdList = new ArrayList<>();
         userIdList.add(userId);
-        return new Response("true", "success", fileRepository.findByuserId(userId));
+        return null;
+        //return new Response("true", "success", fileRepository.findByuserId(userId));
+        //return Response.getResponse("true", "success", fileRepository.findByuserId(userId));
     }
 }
