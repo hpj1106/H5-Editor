@@ -27,6 +27,7 @@ public class Admin {
     @Autowired
     private FileStorage fileStorage;
 
+    /*用户接口*/
     /**
      * 获取所有普通用户
      * @return JSON Response
@@ -39,47 +40,58 @@ public class Admin {
         return userJson.getUserList();
     }
 
-    // TODO: 2017/2/27
     /**
      * 新增普通用户
      * @param user 要新增的用户JSON
      * @return JSON Response
      * */
     @RequestMapping(value = "/admin/addUser",
-                    method = RequestMethod.POST)
+                    method = RequestMethod.POST,
+                    consumes = "application/json",
+                    produces = "application/json")
     public Object addUser(@RequestBody User user) {
         return userJson.addUser(user);
     }
 
-    // TODO: 2017/2/27
     /**
      * 删除普通用户
      * @return JSON Response
      * */
-    public Object removeUser() {
-        return userJson.removeUser();
+    @RequestMapping(value = "/admin/deleteUser",
+                    method = RequestMethod.DELETE,
+                    consumes = "application/json",
+                    produces = "application/json")
+    public Object removeUser(@RequestBody User user) {
+        return userJson.removeUserById(user.getUserId());
     }
 
-    // TODO: 2017/2/27
     /**
      * 查询普通用户
      * @param userId 要查询的用户ID
      * @return JSON Response
      * */
-    public Object getUser(@RequestParam int userId) {
-        return userJson.getUser(userId);
+    @RequestMapping(value = "/admin/getUser",
+                    method = RequestMethod.GET,
+                    consumes = "text/plain",
+                    produces = "application/json")
+    public Object getUser(@RequestParam String userId) {
+        return userJson.getUserById(Integer.getInteger(userId));
     }
 
-    // TODO: 2017/2/27
     /**
      * 修改普通用户
      * @param user 要修改的用户JSON
      * @return JSON Response
      * */
+    @RequestMapping(value = "/admin/modifyUser",
+                    method = RequestMethod.PUT,
+                    consumes = "application/json",
+                    produces = "application/json")
     public Object modifyUser(@RequestBody User user) {
-        return userJson.modifyUser(user);
+        return userJson.modifyUserById(user);
     }
 
+    /*素材接口*/
     /**
      * 获取所有素材
      * @return JSON Response

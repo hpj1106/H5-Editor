@@ -25,30 +25,46 @@ public class UserJsonService implements UserJson {
     @Override
     public Object getUserList() {
         List<User> userList = userRepository.getAllUser();
-        return new Response("true", "success", userList);
+        //return new Response("true", "success", userList);
+        return Response.getResponse("true", "success", userList);
     }
 
-    // TODO: 2017/2/27  
     @Override
     public Object addUser(User user) {
-        return null;
+        User expectSavedUser = userRepository.save(user);
+        if (expectSavedUser != null) {
+            return Response.getResponse("true", "success", null);
+        } else {
+            return Response.getResponse("false", "Saved Error", null);
+        }
     }
 
-    // TODO: 2017/2/27  
     @Override
-    public Object getUser(int username) {
-        return null;
+    public Object getUserById(int username) {
+        User expectUser = userRepository.findOne(username);
+        if (expectUser != null) {
+            return Response.getResponse("true", "success", null);
+        } else {
+            return Response.getResponse("false", "no user", null);
+        }
     }
 
-    // TODO: 2017/2/27  
     @Override
-    public Object removeUser() {
-        return null;
+    public Object removeUserById(int userId) {
+        try {
+            userRepository.delete(userId);
+            return Response.getResponse("true", "success", null);
+        } catch (Exception e) {
+            return Response.getResponse("false", "Delete Error", null);
+        }
     }
 
-    // TODO: 2017/2/27  
     @Override
-    public Object modifyUser(User user) {
+    public Object modifyUserById(User user) {
+        userRepository.modifyUserById(
+                user.getUserId(), user.getUsername(), user.getPassword(),
+                user.getEmail(), user.getTel(), user.getType(),
+                user.isAvailable());
         return null;
     }
 }
