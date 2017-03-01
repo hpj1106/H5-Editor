@@ -33,6 +33,7 @@ public class User {
                     produces = "application/json")
     @ResponseBody
     public Object getFileList(@PathVariable("userId") int userId) {
-        return fileJson.getFileListForUser(userId);
+        return null;
+        //return fileJson.getFileListForUser(userId);
     }
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class File {
     @Id
-    private long fileId;
+    private long file_Id;
     private long userId;
     private String filename;
     private String location;

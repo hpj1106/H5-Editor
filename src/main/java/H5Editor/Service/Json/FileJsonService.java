@@ -32,7 +32,7 @@ public class FileJsonService implements FileJson {
     @Override
     public Object getFileListForAdmin() {
         List<File> fileList = fileRepository.findAvailableFiles();
-        if (fileList.isEmpty()) {
+        if (! fileList.isEmpty()) {
             Constant.RES_SUCCESS_WITH_DATA.setData(fileList);
             return Constant.RES_SUCCESS_WITH_DATA;
         } else {
@@ -55,7 +55,7 @@ public class FileJsonService implements FileJson {
     @Override
     public Object modifyFileByFileIdForAdmin(File file) {
         try {
-            fileRepository.modifyFileByFileId(file.getFileId(), file.getUserId(), file.getFilename(),
+            fileRepository.modifyFileByFileId(file.getFile_Id(), file.getFilename(),
                     file.getLocation(), file.getType(), file.isAvailable(), file.isPublic());
             return Constant.RES_SUCCESS_NO_DATA;
         } catch (Exception e) {

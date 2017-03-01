@@ -12,13 +12,12 @@ import java.util.List;
  */
 public interface FileRepository extends CrudRepository<File, Long> {
 
-    @Query("select * from file f where f.available = 1")
+    @Query("select f from File f where f.available = 1") // File not file...
     List<File> findAvailableFiles();
 
     @Modifying
     @Transactional
-    @Query("update file f set f.fileName = ?3, f.location = ?4, f.type = ?5, " +
-            "f.available = ?6, f.is_public = ?7 where f.fileId = ?1")
-    void modifyFileByFileId(long fileId, long userId, String fileName, String location,
-                            int type, boolean available, boolean is_public);
+    @Query(value = "update File f set f.filename = ?2, f.location = ?3, f.type = ?4, " +
+            "f.available = ?5, f.is_public = ?6 where f.file_Id = ?1", nativeQuery = true) // 不配置nativeQuery会报错
+    void modifyFileByFileId(long fileId, String fileName, String location, int type, boolean available, boolean is_public);
 }
