@@ -55,8 +55,9 @@ public class FileJsonService implements FileJson {
     @Override
     public Object modifyFileByFileIdForAdmin(File file) {
         try {
-            fileRepository.modifyFileByFileId(file.getFile_Id(), file.getFilename(),
-                    file.getLocation(), file.getType(), file.isAvailable(), file.isPublic());
+            fileRepository.modifyFileByFileId(file.getFilename(), file.getLocation(),
+                    file.getType(), file.isAvailable(), file.isPublic(),
+                    file.getFileId());
             return Constant.RES_SUCCESS_NO_DATA;
         } catch (Exception e) {
             LOGGER.debug("exception", e);

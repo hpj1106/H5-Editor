@@ -2,6 +2,7 @@ package H5Editor.Model.File;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 public class File {
     @Id
-    private long file_Id;
+    private long fileId;
     private long userId;
     private String filename;
     private String location;

@@ -17,7 +17,8 @@ public interface FileRepository extends CrudRepository<File, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update File f set f.filename = ?2, f.location = ?3, f.type = ?4, " +
-            "f.available = ?5, f.is_public = ?6 where f.file_Id = ?1", nativeQuery = true) // 不配置nativeQuery会报错
-    void modifyFileByFileId(long fileId, String fileName, String location, int type, boolean available, boolean is_public);
+    @Query(value = "update File f set f.filename = ?1, f.location = ?2, f.type = ?3, " +
+            "f.available = ?4, f.is_public = ?5 where f.file_id = ?6", nativeQuery = true) // 不配置nativeQuery会报错
+    void modifyFileByFileId(String fileName, String location, int type, boolean available,
+                            boolean is_public, long fileId);
 }
