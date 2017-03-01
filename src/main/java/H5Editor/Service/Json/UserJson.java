@@ -9,7 +9,7 @@ import H5Editor.Model.User.User;
 public interface UserJson {
     Object getUserList();
     Object addUser(User user);
-    Object removeUserById(int userId);
-    Object getUserById(int userId);
+    Object removeUserById(long userId);
+    Object getUserById(long userId);
     Object modifyUserById(User user);
 }

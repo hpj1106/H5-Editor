@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class File {
     @Id
     private long fileId;
-    private int userId;
+    private long userId;
     private String filename;
     private String location;
     private int type;
@@ -24,7 +24,7 @@ public class File {
 
     }
 
-    public File(int userId, String filename, String location, int type, boolean available, boolean isPublic) {
+    public File(long userId, String filename, String location, int type, boolean available, boolean isPublic) {
         this.userId = userId;
         this.filename = filename;
         this.location = location;

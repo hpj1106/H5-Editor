@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private int userId;
+    private long userId;
     private String username;
     private String password;
     private String email;

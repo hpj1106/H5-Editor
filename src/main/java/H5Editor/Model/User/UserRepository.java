@@ -11,12 +11,12 @@ import java.util.List;
  * Created by MrCJ on 2016/12/8.
  */
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
 
     @Query("select u from User u where u.type = 1 and u.userId = ?1")
-    User getUserById(int userId);
+    User getUserById(long userId);
 
     @Query("select u from User u where u.type = 1")
     List<User> getAllUser();
@@ -26,6 +26,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     @Query("update User u set u.username = ?2, u.password = ?3, u.email = ?4," +
             "u.tel = ?5, u.type = ?6, u.available = ?7" +
             " where u.userId = ?1")
-    void modifyUserById(int userId, String username, String password, String email,
+    void modifyUserById(long userId, String username, String password, String email,
                         String tel, int type, boolean available);
 }

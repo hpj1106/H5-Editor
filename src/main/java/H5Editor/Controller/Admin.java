@@ -1,5 +1,6 @@
 package H5Editor.Controller;
 
+import H5Editor.Model.File.File;
 import H5Editor.Model.User.User;
 import H5Editor.Service.FileStorage;
 import H5Editor.Service.Json.FileJson;
@@ -68,7 +69,7 @@ public class Admin {
                     method = RequestMethod.DELETE,
                     produces = "application/json")
     @ResponseBody
-    public Object removeUser(@RequestParam int userId) {
+    public Object removeUser(@RequestParam long userId) {
         return userJson.removeUserById(userId);
     }
 
@@ -81,7 +82,7 @@ public class Admin {
                     method = RequestMethod.GET,
                     produces = "application/json")
     @ResponseBody
-    public Object getUser(@RequestParam int userId) {
+    public Object getUser(@RequestParam long userId) {
         // RequestParam 简单参数的绑定，可以直接体现在URL上
         return userJson.getUserById(userId);
     }
@@ -118,6 +119,7 @@ public class Admin {
      * @return todo
      * */
     @GetMapping(value = "/admin/uploadFile")
+    @ResponseBody
     public String uploadFile() {
         return "uploadFile";
     }
@@ -127,6 +129,7 @@ public class Admin {
      * @return todo
      * */
     @PostMapping(value = "/admin/uploadFile")
+    @ResponseBody
     public String handleFileupload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
         System.out.println(file.getOriginalFilename());
@@ -134,5 +137,42 @@ public class Admin {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename());
         return "redirect:/admin/show";
+    }
+
+    /**
+     * 删除素材
+     * @return JSON Response
+     * */
+    @RequestMapping(value = "/admin/removeFile",
+                    method = RequestMethod.DELETE,
+                    produces = "application/json")
+    @ResponseBody
+    public Object removeFile(@RequestParam long fileId) {
+        return fileJson.removeFileByFileIdForAdmin(fileId);
+    }
+
+    /**
+     * 修改素材
+     * @return JSON Response
+     * */
+    @RequestMapping(value = "/admin/modifyFile",
+                    method = RequestMethod.PUT,
+                    consumes = "application/json",
+                    produces = "application/json")
+    @ResponseBody
+    public Object modifyFile(@RequestBody File file) {
+        return fileJson.modifyFileByFileIdForAdmin(file);
+    }
+
+    /**
+     * 查询素材
+     * @return JSON Response
+     * */
+    @RequestMapping(value = "/admin/getFile",
+                    method = RequestMethod.GET,
+                    produces = "application/json")
+    @ResponseBody
+    public Object getFile(@RequestParam long fileId) {
+        return fileJson.getFileByIdForAdmin(fileId);
     }
 }
