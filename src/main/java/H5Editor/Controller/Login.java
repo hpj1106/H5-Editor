@@ -11,6 +11,6 @@ public class Login {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "Login";
     }
 }
