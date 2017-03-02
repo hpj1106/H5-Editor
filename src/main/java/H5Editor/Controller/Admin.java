@@ -104,14 +104,16 @@ public class Admin {
     /*素材接口*/
     /**
      * 获取所有素材
+     * @param page 表示第几页，从0开始，默认为第0页
+     * @param size 表示每一页的大小，默认为20
      * @return JSON Response
      * */
     @RequestMapping(value = "/admin/getFileList",
                     method = RequestMethod.GET,
                     produces = "application/json")
     @ResponseBody
-    public Object getFileList() {
-        return fileJson.getFileListForAdmin();
+    public Object getFileList(@RequestParam int page, @RequestParam int size) {
+        return fileJson.getFileListForAdmin(page, size);
     }
 
     /**

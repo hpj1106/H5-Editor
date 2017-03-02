@@ -10,6 +10,7 @@ public interface FileJson {
 
     // 为管理员提供的接口
     Object getFileListForAdmin();
+    Object getFileListForAdmin(int page, int size);
     Object removeFileByFileIdForAdmin(long fileId);
     Object modifyFileByFileIdForAdmin(File file);
     Object getFileByIdForAdmin(long fileId);
