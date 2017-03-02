@@ -6,6 +6,10 @@ import H5Editor.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,11 +31,25 @@ public class UserJsonService implements UserJson {
         this.userRepository = userRepository;
     }
 
+    @Deprecated
     @Override
     public Object getUserList() {
-        List<User> userList = userRepository.getAllUser();
-        Constant.RES_SUCCESS_WITH_DATA.setData(userList);
-        return Constant.RES_SUCCESS_WITH_DATA;
+        return userRepository.getAllUser();
+    }
+
+    @Override
+    public Object getUserList(int page, int size) {
+        Sort sort = new Sort(Sort.Direction.ASC, "userId"); // 升序排列
+        Pageable pageable = new PageRequest(page, size, sort);
+        try {
+            Page<User> userPage = userRepository.getAllUser(pageable);
+            Constant.RES_SUCCESS_WITH_DATA.setData(userPage);
+            return Constant.RES_SUCCESS_WITH_DATA;
+        } catch (Exception e) {
+            LOGGER.error("FindAllUser Error", e);
+            Constant.RES_FAIL.setInfo("Error");
+            return Constant.RES_FAIL;
+        }
     }
 
     @Override
@@ -71,10 +89,8 @@ public class UserJsonService implements UserJson {
     @Override
     public Object modifyUserById(User user) {
         try {
-            userRepository.modifyUserById(
-                    user.getUserId(), user.getUsername(), user.getPassword(),
-                    user.getEmail(), user.getTel(), user.getType(),
-                    user.isAvailable());
+            userRepository.save(user);
+            //userRepository.modifyUserById(user.getUserId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getTel(), user.getType(), user.isAvailable());
             return Constant.RES_SUCCESS_NO_DATA;
         } catch (Exception e) {
             System.out.println(e);

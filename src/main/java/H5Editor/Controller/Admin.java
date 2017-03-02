@@ -41,8 +41,8 @@ public class Admin {
                     method = RequestMethod.GET,
                     produces = "application/json")
     @ResponseBody
-    public Object getUserList() {
-        return userJson.getUserList();
+    public Object getUserList(@RequestParam int page, @RequestParam int size) {
+        return userJson.getUserList(page, size);
     }
 
     /**
