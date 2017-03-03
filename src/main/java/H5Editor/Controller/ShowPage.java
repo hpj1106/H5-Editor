@@ -10,11 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by MrCJ on 2016/12/5.
  */
 @Controller
+@ApiIgnore
 public class ShowPage {
 
     private final FileStorageService fileStorageService;

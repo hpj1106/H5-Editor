@@ -5,6 +5,7 @@ import H5Editor.Model.User.User;
 import H5Editor.Service.FileStorage;
 import H5Editor.Service.Json.FileJson;
 import H5Editor.Service.Json.UserJson;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 
 @Controller
+@Api("管理员相关的API")
 public class Admin {
 
     @Autowired
@@ -35,8 +37,15 @@ public class Admin {
     /*用户接口*/
     /**
      * 获取所有普通用户
+     * @param page 表示第几页，从0开始，默认为第0页
+     * @param size 表示每一页的大小，默认为20
      * @return JSON Response
      * */
+    @ApiOperation("获取所有普通用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query", name = "page", dataType = "int", value="要查询的页数", required=true, defaultValue = "0"),
+            @ApiImplicitParam(paramType="query", name = "size", dataType = "int", value="每页的条目数", required=true, defaultValue = "20")
+    })
     @RequestMapping(value = "/admin/getUserList",
                     method = RequestMethod.GET,
                     produces = "application/json")
@@ -63,6 +72,7 @@ public class Admin {
 
     /**
      * 删除普通用户
+     * @param userId 普通用户ID
      * @return JSON Response
      * */
     @RequestMapping(value = "/admin/deleteUser",
