@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiModel;
  */
 
 @lombok.Data
-@ApiModel(value = "Response")
 public class Response {
     public String success;
     private String info;
