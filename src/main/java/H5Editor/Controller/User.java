@@ -1,9 +1,6 @@
-package H5Editor.Controller;
+package h5editor.controller;
 
-import H5Editor.Model.File.File;
-import H5Editor.Model.File.FileRepository;
-import H5Editor.Service.Json.FileJson;
-import H5Editor.Service.Json.Response;
+import h5editor.service.Json.FileJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by MrCJ on 2016/12/20.

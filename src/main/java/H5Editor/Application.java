@@ -1,6 +1,6 @@
-package H5Editor;
+package h5editor;
 
-import H5Editor.Model.File.FileRepository;
+import h5editor.model.File.FileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

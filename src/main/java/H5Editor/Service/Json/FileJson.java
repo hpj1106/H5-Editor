@@ -1,6 +1,6 @@
-package H5Editor.Service.Json;
+package h5editor.service.Json;
 
-import H5Editor.Model.File.File;
+import h5editor.model.File.File;
 
 /**
  * Created by MrCJ on 2016/12/22.

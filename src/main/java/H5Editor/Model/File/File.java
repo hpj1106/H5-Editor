@@ -1,8 +1,7 @@
-package H5Editor.Model.File;
+package h5editor.model.File;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

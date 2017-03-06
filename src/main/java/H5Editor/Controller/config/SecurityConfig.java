@@ -1,7 +1,7 @@
-package H5Editor.Controller.config;
+package h5editor.controller.config;
 
-import H5Editor.Model.User.UserRepository;
-import H5Editor.Service.UserService;
+import h5editor.model.User.UserRepository;
+import h5editor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 禁用csrf
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/user/**").access("hasRole('USER')")
@@ -42,6 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(new UserService(userRepository));
         auth.inMemoryAuthentication()
-                .withUser("H5Editor").password("123456").roles("SYSTEM");
+                .withUser("h5editor").password("123456").roles("SYSTEM");
     }
 }

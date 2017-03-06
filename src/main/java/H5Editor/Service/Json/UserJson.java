@@ -1,6 +1,6 @@
-package H5Editor.Service.Json;
+package h5editor.service.Json;
 
-import H5Editor.Model.User.User;
+import h5editor.model.User.User;
 
 /**
  * Created by MrCJ on 2016/12/19.

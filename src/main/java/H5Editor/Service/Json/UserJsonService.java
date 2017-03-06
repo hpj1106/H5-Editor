@@ -1,8 +1,8 @@
-package H5Editor.Service.Json;
+package h5editor.service.Json;
 
-import H5Editor.Model.User.User;
-import H5Editor.Model.User.UserRepository;
-import H5Editor.common.Constant;
+import h5editor.model.User.User;
+import h5editor.model.User.UserRepository;
+import h5editor.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by MrCJ on 2016/12/19.

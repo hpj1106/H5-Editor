@@ -1,4 +1,4 @@
-package H5Editor.Service.Json;
+package h5editor.service.Json;
 
 /**
  * Created by MrCJ on 2016/12/19.

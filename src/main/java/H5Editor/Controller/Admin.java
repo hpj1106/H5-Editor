@@ -1,10 +1,10 @@
-package H5Editor.Controller;
+package h5editor.controller;
 
-import H5Editor.Model.File.File;
-import H5Editor.Model.User.User;
-import H5Editor.Service.FileStorage;
-import H5Editor.Service.Json.FileJson;
-import H5Editor.Service.Json.UserJson;
+import h5editor.model.File.File;
+import h5editor.model.User.User;
+import h5editor.service.FileStorage;
+import h5editor.service.Json.FileJson;
+import h5editor.service.Json.UserJson;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

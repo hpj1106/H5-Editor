@@ -1,8 +1,6 @@
-package H5Editor.Service;
+package h5editor.service;
 
-import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
-import java.nio.file.Path;
 
 /**
  * Created by MrCJ on 2016/12/22.
