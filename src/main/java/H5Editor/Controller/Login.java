@@ -1,4 +1,4 @@
-package h5editor.controller;
+package H5Editor.Controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

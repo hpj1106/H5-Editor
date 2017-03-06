@@ -1,6 +1,4 @@
-package h5editor.service.json;
-
-import io.swagger.annotations.ApiModel;
+package H5Editor.Service.Json;
 
 /**
  * Created by MrCJ on 2016/12/19.

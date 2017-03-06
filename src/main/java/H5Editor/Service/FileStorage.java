@@ -1,4 +1,4 @@
-package h5editor.service;
+package H5Editor.Service;
 
 import org.springframework.web.multipart.MultipartFile;
 

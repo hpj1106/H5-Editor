@@ -1,7 +1,7 @@
-package h5editor.service;
+package H5Editor.Service;
 
-import h5editor.model.user.User;
-import h5editor.model.user.UserRepository;
+import H5Editor.Model.User.User;
+import H5Editor.Model.User.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

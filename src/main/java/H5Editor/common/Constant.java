@@ -1,6 +1,6 @@
-package h5editor.common;
+package H5Editor.common;
 
-import h5editor.service.json.Response;
+import H5Editor.Service.Json.Response;
 
 /**
  * Created by mr_jw on 2017/3/1.

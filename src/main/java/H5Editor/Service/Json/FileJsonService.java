@@ -1,8 +1,8 @@
-package h5editor.service.json;
+package H5Editor.Service.Json;
 
-import h5editor.model.file.File;
-import h5editor.model.file.FileRepository;
-import h5editor.common.Constant;
+import H5Editor.Model.File.File;
+import H5Editor.Model.File.FileRepository;
+import H5Editor.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

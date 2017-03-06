@@ -1,10 +1,11 @@
-package h5editor.controller;
+package H5Editor.Controller;
 
-import h5editor.model.file.File;
-import h5editor.model.user.User;
-import h5editor.service.FileStorage;
-import h5editor.service.json.FileJson;
-import h5editor.service.json.UserJson;
+import H5Editor.Model.File.File;
+import H5Editor.Model.User.User;
+import H5Editor.Service.FileStorage;
+import H5Editor.Service.Json.FileJson;
+import H5Editor.Service.Json.Response;
+import H5Editor.Service.Json.UserJson;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +44,13 @@ public class Admin {
      * */
     @ApiOperation("获取所有普通用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType="query", name = "page", dataType = "int", value="要查询的页数", required=true, defaultValue = "0"),
-            @ApiImplicitParam(paramType="query", name = "size", dataType = "int", value="每页的条目数", required=true, defaultValue = "20")
+            @ApiImplicitParam(paramType="query", name = "page", dataType = "int",
+                    value="要查询的页数", required = true, defaultValue = "1"),
+            @ApiImplicitParam(paramType="query", name = "size", dataType = "int",
+                    value="每页的条目数", required = true, defaultValue = "1")
+    })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "成功返回所有普通用户", response = Response.class)
     })
     @RequestMapping(value = "/admin/getUserList",
                     method = RequestMethod.GET,
@@ -59,6 +65,14 @@ public class Admin {
      * @param user 要新增的用户JSON
      * @return JSON Response
      * */
+    @ApiOperation("新增普通用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", name = "user", dataType = "json",
+                    value = "要新增的用户json", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功新增普通用户", response = Response.class)
+    })
     @RequestMapping(value = "/admin/addUser",
                     method = RequestMethod.POST,
                     consumes = "application/json",
@@ -75,6 +89,14 @@ public class Admin {
      * @param userId 普通用户ID
      * @return JSON Response
      * */
+    @ApiOperation("删除普通用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "userId", dataType = "long",
+                    value = "要删除的用户的ID", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功删除普通用户", response = Response.class)
+    })
     @RequestMapping(value = "/admin/deleteUser",
                     method = RequestMethod.DELETE,
                     produces = "application/json")
@@ -88,6 +110,14 @@ public class Admin {
      * @param userId 要查询的用户ID
      * @return JSON Response
      * */
+    @ApiOperation("查询普通用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "userId", dataType = "long",
+                    value = "要查询的用户ID", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功查询普通用户", response = Response.class)
+    })
     @RequestMapping(value = "/admin/getUser",
                     method = RequestMethod.GET,
                     produces = "application/json")
@@ -102,6 +132,14 @@ public class Admin {
      * @param user 要修改的用户JSON
      * @return JSON Response
      * */
+    @ApiOperation("修改普通用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", name = "user", dataType = "json",
+                    value = "要修改的用户json", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功修改普通用户", response = Response.class)
+    })
     @RequestMapping(value = "/admin/modifyUser",
                     method = RequestMethod.PUT,
                     consumes = "application/json",
@@ -118,6 +156,16 @@ public class Admin {
      * @param size 表示每一页的大小，默认为20
      * @return JSON Response
      * */
+    @ApiOperation("获取所有素材文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType="query", name = "page", dataType = "int",
+                    value="要查询的页数", required = true, defaultValue = "1"),
+            @ApiImplicitParam(paramType="query", name = "size", dataType = "int",
+                    value="每页的条目数", required = true, defaultValue = "1")
+    })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "成功返回所有素材文件", response = Response.class)
+    })
     @RequestMapping(value = "/admin/getFileList",
                     method = RequestMethod.GET,
                     produces = "application/json")
@@ -155,6 +203,14 @@ public class Admin {
      * 删除素材
      * @return JSON Response
      * */
+    @ApiOperation("删除素材文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "fileId", dataType = "long",
+                    value = "要删除的素材的ID", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功删除素材文件", response = Response.class)
+    })
     @RequestMapping(value = "/admin/removeFile",
                     method = RequestMethod.DELETE,
                     produces = "application/json")
@@ -167,6 +223,14 @@ public class Admin {
      * 修改素材
      * @return JSON Response
      * */
+    @ApiOperation("修改素材文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", name = "file", dataType = "json",
+                    value = "要修改的素材的ID", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功修改素材文件", response = Response.class)
+    })
     @RequestMapping(value = "/admin/modifyFile",
                     method = RequestMethod.PUT,
                     consumes = "application/json",
@@ -180,6 +244,14 @@ public class Admin {
      * 查询素材
      * @return JSON Response
      * */
+    @ApiOperation("查询素材文件")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "fileId", dataType = "long",
+                    value = "要查询的素材的ID", required = true)
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "成功查询素材文件", response = Response.class)
+    })
     @RequestMapping(value = "/admin/getFile",
                     method = RequestMethod.GET,
                     produces = "application/json")

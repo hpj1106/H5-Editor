@@ -1,7 +1,7 @@
-package h5editor.controller.config;
+package H5Editor.Controller.config;
 
-import h5editor.model.user.UserRepository;
-import h5editor.service.UserService;
+import H5Editor.Model.User.UserRepository;
+import H5Editor.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -43,6 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(new UserService(userRepository));
         auth.inMemoryAuthentication()
-                .withUser("h5editor").password("123456").roles("SYSTEM");
+                .withUser("H5Editor").password("123456").roles("SYSTEM");
     }
 }

@@ -1,4 +1,4 @@
-package h5editor.controller.config;
+package H5Editor.Controller.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

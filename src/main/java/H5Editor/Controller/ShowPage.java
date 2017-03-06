@@ -1,6 +1,6 @@
-package h5editor.controller;
+package H5Editor.Controller;
 
-import h5editor.service.FileStorageService;
+import H5Editor.Service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
