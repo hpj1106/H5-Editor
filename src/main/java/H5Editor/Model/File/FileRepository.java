@@ -1,4 +1,4 @@
-package h5editor.model.File;
+package h5editor.model.file;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

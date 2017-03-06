@@ -1,6 +1,6 @@
 package h5editor.controller.config;
 
-import h5editor.model.User.UserRepository;
+import h5editor.model.user.UserRepository;
 import h5editor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

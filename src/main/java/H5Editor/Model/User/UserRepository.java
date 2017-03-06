@@ -1,4 +1,4 @@
-package h5editor.model.User;
+package h5editor.model.user;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

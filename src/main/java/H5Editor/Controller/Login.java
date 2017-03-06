@@ -16,8 +16,8 @@ public class Login {
 
     @ApiOperation("登录界面")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType="form", name = "username", dataType = "String", value="用户名", required=true),
-            @ApiImplicitParam(paramType="form", name = "password", dataType = "String", value="密码", required=true)
+            @ApiImplicitParam(paramType="query", name = "username", dataType = "String", value="用户名", required=true),
+            @ApiImplicitParam(paramType="query", name = "password", dataType = "String", value="密码", required=true)
     })
     @GetMapping("/login")
     public String login() {

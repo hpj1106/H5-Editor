@@ -1,4 +1,6 @@
-package h5editor.service.Json;
+package h5editor.service.json;
+
+import io.swagger.annotations.ApiModel;
 
 /**
  * Created by MrCJ on 2016/12/19.
@@ -6,6 +8,7 @@ package h5editor.service.Json;
  */
 
 @lombok.Data
+@ApiModel(value = "Response")
 public class Response {
     public String success;
     private String info;

@@ -1,6 +1,6 @@
 package h5editor.service;
 
-import h5editor.model.File.FileRepository;
+import h5editor.model.file.FileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

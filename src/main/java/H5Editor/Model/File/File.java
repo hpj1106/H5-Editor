@@ -1,4 +1,4 @@
-package h5editor.model.File;
+package h5editor.model.file;
 
 import lombok.Data;
 

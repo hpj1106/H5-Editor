@@ -1,7 +1,7 @@
-package h5editor.service.Json;
+package h5editor.service.json;
 
-import h5editor.model.User.User;
-import h5editor.model.User.UserRepository;
+import h5editor.model.user.User;
+import h5editor.model.user.UserRepository;
 import h5editor.common.Constant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

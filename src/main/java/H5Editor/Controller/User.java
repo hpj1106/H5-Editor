@@ -1,6 +1,6 @@
 package h5editor.controller;
 
-import h5editor.service.Json.FileJson;
+import h5editor.service.json.FileJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
