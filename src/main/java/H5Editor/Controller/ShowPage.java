@@ -1,6 +1,6 @@
 package H5Editor.Controller;
 
-import H5Editor.Service.FileStorageService;
+import H5Editor.Service.FileStorageServiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +14,11 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 public class ShowPage {
 
-    private final FileStorageService fileStorageService;
+    private final FileStorageServiceServiceImpl fileStorageServiceImpl;
 
     @Autowired
-    public ShowPage(FileStorageService fileStorageService) {
-        this.fileStorageService = fileStorageService;
+    public ShowPage(FileStorageServiceServiceImpl fileStorageServiceImpl) {
+        this.fileStorageServiceImpl = fileStorageServiceImpl;
     }
 
     @GetMapping("/")

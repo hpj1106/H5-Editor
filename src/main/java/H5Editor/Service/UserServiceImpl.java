@@ -15,11 +15,11 @@ import java.util.List;
  * Created by MrCJ on 2016/12/8.
  * 权限逻辑
  */
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

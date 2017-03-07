@@ -2,18 +2,26 @@ package H5Editor.Controller;
 
 import H5Editor.Model.File.File;
 import H5Editor.Model.User.User;
-import H5Editor.Service.FileStorage;
-import H5Editor.Service.Json.FileJson;
+import H5Editor.Service.FileStorageService;
+import H5Editor.Service.Json.FileJsonService;
 import H5Editor.Service.Json.Response;
-import H5Editor.Service.Json.UserJson;
+import H5Editor.Service.Json.UserJsonService;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 /**
  * Created by MrCJ on 2016/12/19.
@@ -24,14 +32,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Api("管理员相关的API")
 public class Admin {
 
-    @Autowired
-    private UserJson userJson;
+    private UserJsonService userJsonService;
+
+    private FileJsonService fileJsonService;
+
+    private FileStorageService fileStorageService;
 
     @Autowired
-    private FileJson fileJson;
-
-    @Autowired
-    private FileStorage fileStorage;
+    public Admin(UserJsonService userJsonService, FileJsonService fileJsonService,
+                 FileStorageService fileStorageService) {
+        this.userJsonService = userJsonService;
+        this.fileJsonService = fileJsonService;
+        this.fileStorageService = fileStorageService;
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Admin.class);
 
@@ -57,7 +70,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getUserList(@RequestParam int page, @RequestParam int size) {
-        return userJson.getUserList(page, size);
+        return userJsonService.getUserList(page, size);
     }
 
     /**
@@ -81,7 +94,7 @@ public class Admin {
     public Object addUser(@RequestBody User user) {
         LOGGER.info("userId", user.getUsername());
         LOGGER.info("userTel", user.getPassword());
-        return userJson.addUser(user);
+        return userJsonService.addUser(user);
     }
 
     /**
@@ -102,7 +115,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object removeUser(@RequestParam long userId) {
-        return userJson.removeUserById(userId);
+        return userJsonService.removeUserById(userId);
     }
 
     /**
@@ -124,7 +137,7 @@ public class Admin {
     @ResponseBody
     public Object getUser(@RequestParam long userId) {
         // RequestParam 简单参数的绑定，可以直接体现在URL上
-        return userJson.getUserById(userId);
+        return userJsonService.getUserById(userId);
     }
 
     /**
@@ -146,7 +159,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object modifyUser(@RequestBody User user) {
-        return userJson.modifyUserById(user);
+        return userJsonService.modifyUserById(user);
     }
 
     /*素材接口*/
@@ -171,7 +184,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getFileList(@RequestParam int page, @RequestParam int size) {
-        return fileJson.getFileListForAdmin(page, size);
+        return fileJsonService.getFileListForAdmin(page, size);
     }
 
     /**
@@ -179,7 +192,6 @@ public class Admin {
      * @return todo
      * */
     @GetMapping(value = "/admin/uploadFile")
-    @ResponseBody
     public String uploadFile() {
         return "uploadFile";
     }
@@ -189,14 +201,43 @@ public class Admin {
      * @return todo
      * */
     @PostMapping(value = "/admin/uploadFile")
-    @ResponseBody
     public String handleFileupload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
-        System.out.println(file.getOriginalFilename());
-        fileStorage.store(file);
+        //System.out.println(file.getOriginalFilename());
+        fileStorageService.store(file);
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename());
         return "redirect:/admin/show";
+    }
+
+    /**
+     * 显示所有已上传文件，点击下载
+     * */
+    @GetMapping(value = "/admin/files")
+    public String listUploadedFiles(Model model) throws IOException {
+        model.addAttribute("files",
+                fileStorageService
+                        .loadAll()
+                        .map(path -> MvcUriComponentsBuilder
+                                .fromMethodName(Admin.class,
+                                        "serveFile",
+                                        path.getFileName().toString()).build().toString())
+                        .collect(Collectors.toList())
+        );
+        return "uploadedFiles";
+    }
+
+    /**
+     * 下载素材文件
+     * */
+    @GetMapping(value = "/admin/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+        Resource file = fileStorageService.loadAsResource(filename);
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+                .body(file);
     }
 
     /**
@@ -216,7 +257,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object removeFile(@RequestParam long fileId) {
-        return fileJson.removeFileByFileIdForAdmin(fileId);
+        return fileJsonService.removeFileByFileIdForAdmin(fileId);
     }
 
     /**
@@ -237,7 +278,7 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object modifyFile(@RequestBody File file) {
-        return fileJson.modifyFileByFileIdForAdmin(file);
+        return fileJsonService.modifyFileByFileIdForAdmin(file);
     }
 
     /**
@@ -257,6 +298,6 @@ public class Admin {
                     produces = "application/json")
     @ResponseBody
     public Object getFile(@RequestParam long fileId) {
-        return fileJson.getFileByIdForAdmin(fileId);
+        return fileJsonService.getFileByIdForAdmin(fileId);
     }
 }

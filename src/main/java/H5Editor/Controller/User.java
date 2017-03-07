@@ -1,6 +1,6 @@
 package H5Editor.Controller;
 
-import H5Editor.Service.Json.FileJson;
+import H5Editor.Service.Json.FileJsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class User {
 
     @Autowired
-    private FileJson fileJson;
+    private FileJsonService fileJsonService;
 
     /**
      * 获取普通用户上传的素材列表
@@ -29,6 +29,6 @@ public class User {
     @ResponseBody
     public Object getFileList(@PathVariable("userId") int userId) {
         return null;
-        //return fileJson.getFileListForUser(userId);
+        //return fileJsonService.getFileListForUser(userId);
     }
 }
